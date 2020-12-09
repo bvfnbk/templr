@@ -22,6 +22,7 @@ dependencies {
     testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.20")
 
     implementation("com.github.ajalt.clikt:clikt:3.0.1")
+    implementation("org.freemarker:freemarker:2.3.30")
 }
 
 tasks {
