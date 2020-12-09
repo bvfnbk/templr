@@ -1,5 +1,10 @@
 # `templr`
 
+[![Build Status](https://travis-ci.com/bvfnbk/templr.svg?branch=main)](https://travis-ci.com/bvfnbk/templr)
+[![CodeFactor](https://www.codefactor.io/repository/github/bvfnbk/templr/badge)](https://www.codefactor.io/repository/github/bvfnbk/templr)
+
+---
+
 A command-line client to combine JSON _models_ with _templates_ in order to create files. It embeds the _Freemarker_
 template engine and was a result of a quick _Kotlin_ script hack.
 
