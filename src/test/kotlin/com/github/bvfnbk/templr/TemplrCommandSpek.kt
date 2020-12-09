@@ -75,49 +75,44 @@ object TemplrCommandSpek : Spek({
             }
         }
 
-        it("The specified charset is used (via short option).") {
-            // Given
+        describe("The specified charset is being used.") {
             val expected = "ISO-8859-1"
-            val args = arrayOf("-c", expected, "--model", "model.json", "--template", "template.ftl", "output")
-            val app = mockk<TemplrApplication>(relaxUnitFun = true)
-            val command = TemplrCommand(app)
+            val commonArguments = arrayOf("--model", "model.json", "--template", "template.ftl", "output")
+            val expectedArguments = ApplicationArguments(
+                expected,
+                File("model.json"),
+                File("template.ftl"),
+                File("output")
+            )
 
-            // When
-            command.parse(args)
+            it("Using short option") {
+                // Given
+                val args = commonArguments + arrayOf("-c", expected)
+                val app = mockk<TemplrApplication>(relaxUnitFun = true)
+                val command = TemplrCommand(app)
 
-            // Then
-            verify {
-                app.run(
-                    ApplicationArguments(
-                        expected,
-                        File("model.json"),
-                        File("template.ftl"),
-                        File("output")
-                    )
-                )
+                // When
+                command.parse(args)
+
+                // Then
+                verify {
+                    app.run(expectedArguments)
+                }
             }
-        }
 
-        it("The specified charset is used (via long option).") {
-            // Given
-            val expected = "ISO-8859-1"
-            val args = arrayOf("--charset", expected, "--model", "model.json", "--template", "template.ftl", "output")
-            val app = mockk<TemplrApplication>(relaxUnitFun = true)
-            val command = TemplrCommand(app)
+            it("Using long option") {
+                // Given
+                val args = commonArguments + arrayOf("--charset", expected)
+                val app = mockk<TemplrApplication>(relaxUnitFun = true)
+                val command = TemplrCommand(app)
 
-            // When
-            command.parse(args)
+                // When
+                command.parse(args)
 
-            // Then
-            verify {
-                app.run(
-                    ApplicationArguments(
-                        expected,
-                        File("model.json"),
-                        File("template.ftl"),
-                        File("output")
-                    )
-                )
+                // Then
+                verify {
+                    app.run(expectedArguments)
+                }
             }
         }
     }
