@@ -27,3 +27,9 @@ hs_err_pid*
 ## IntelliJ
 *.iml
 .idea/
+
+# Gradle
+.gradle/
+build/
+
+!gradle-wrapper.jar
