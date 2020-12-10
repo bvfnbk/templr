@@ -12,7 +12,7 @@ import java.io.File
 class FreemarkerTemplateServiceFactory {
     fun create(templateDirectory: File, charset: String): TemplateService {
         val configuration = Configuration(Configuration.VERSION_2_3_30)
-        
+
         configuration.setDirectoryForTemplateLoading(templateDirectory)
         configuration.defaultEncoding = charset
         configuration.templateExceptionHandler = TemplateExceptionHandler.RETHROW_HANDLER
