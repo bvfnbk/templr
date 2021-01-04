@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.4.20"
+    kotlin("plugin.serialization") version "1.4.20"
 }
 
 group = "com.github.bvfnbk"
@@ -13,6 +14,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // Test
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.9")
