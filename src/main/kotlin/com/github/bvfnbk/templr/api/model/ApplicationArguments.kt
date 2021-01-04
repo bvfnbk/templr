@@ -8,7 +8,6 @@ import java.io.File
  * @author bvfnbk
  */
 data class ApplicationArguments(
-    val charset: String,
     val model: File,
     val template: File,
     val output: File
