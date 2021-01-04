@@ -10,7 +10,7 @@ interface MimeService {
     /**
      * Determine the [MimeType] of the given [File].
      *
-     * Please note: the File must exist and be a regular [File] (ie. [File.isFile] must be `true`)
+     * Please note: the [File] must exist and be a regular [File] (ie. [File.isFile] must be `true`)
      *
      * @param file The abstract [File] to get the [MimeType] of.
      * @return The [MimeType] associated to the given File
