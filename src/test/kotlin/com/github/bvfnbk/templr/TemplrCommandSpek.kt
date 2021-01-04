@@ -64,9 +64,9 @@ object TemplrCommandSpek : Spek({
 
             // Then
             verify {
+                app.charset = Charsets.UTF_8
                 app.run(
                     ApplicationArguments(
-                        "UTF-8",
                         File("model.json"),
                         File("template.ftl"),
                         File("output")
@@ -76,10 +76,9 @@ object TemplrCommandSpek : Spek({
         }
 
         describe("The specified charset is being used.") {
-            val expected = "ISO-8859-1"
+            val expected = Charsets.ISO_8859_1
             val commonArguments = arrayOf("--model", "model.json", "--template", "template.ftl", "output")
             val expectedArguments = ApplicationArguments(
-                expected,
                 File("model.json"),
                 File("template.ftl"),
                 File("output")
@@ -87,7 +86,7 @@ object TemplrCommandSpek : Spek({
 
             it("Using short option") {
                 // Given
-                val args = commonArguments + arrayOf("-c", expected)
+                val args = commonArguments + arrayOf("-c", expected.name())
                 val app = mockk<TemplrApplication>(relaxUnitFun = true)
                 val command = TemplrCommand(app)
 
@@ -96,13 +95,14 @@ object TemplrCommandSpek : Spek({
 
                 // Then
                 verify {
+                    app.charset = expected
                     app.run(expectedArguments)
                 }
             }
 
             it("Using long option") {
                 // Given
-                val args = commonArguments + arrayOf("--charset", expected)
+                val args = commonArguments + arrayOf("--charset", expected.name())
                 val app = mockk<TemplrApplication>(relaxUnitFun = true)
                 val command = TemplrCommand(app)
 
@@ -111,6 +111,7 @@ object TemplrCommandSpek : Spek({
 
                 // Then
                 verify {
+                    app.charset = expected
                     app.run(expectedArguments)
                 }
             }
