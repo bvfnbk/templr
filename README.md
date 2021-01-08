@@ -16,10 +16,10 @@ Usage: templr [OPTIONS] OUTPUT
   Runs the templr application.
 
 Options:
-  -c, --charset TEXT   The input/output charset to be used.
-  -m, --model PATH     The path to the JSON model.
-  -t, --template PATH  The path to the freemarker template.
-  -h, --help           Show this message and exit
+  -c, --charset CHARSET  The input/output charset to be used. (default: UTF-8)
+  -m, --model PATH       The path to the JSON model.
+  -t, --template PATH    The path to the freemarker template.
+  -h, --help             Show this message and exit
 ```
 
 Load the _model_ from a JSON file `./model.json` and use the _Freemarker_ template `./template.ftl` to generate
