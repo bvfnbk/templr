@@ -1,6 +1,7 @@
 package com.github.bvfnbk.templr.api.model
 
 import java.io.File
+import java.nio.charset.Charset
 
 /**
  * The application arguments encapsulate the arguments received from the commandline.
@@ -8,6 +9,7 @@ import java.io.File
  * @author bvfnbk
  */
 data class ApplicationArguments(
+    val charset: Charset,
     val model: File,
     val template: File,
     val output: File
