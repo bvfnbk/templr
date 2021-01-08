@@ -64,9 +64,9 @@ object TemplrCommandSpek : Spek({
 
             // Then
             verify {
-                app.charset = Charsets.UTF_8
                 app.run(
                     ApplicationArguments(
+                        Charsets.UTF_8,
                         File("model.json"),
                         File("template.ftl"),
                         File("output")
@@ -79,6 +79,7 @@ object TemplrCommandSpek : Spek({
             val expected = Charsets.ISO_8859_1
             val commonArguments = arrayOf("--model", "model.json", "--template", "template.ftl", "output")
             val expectedArguments = ApplicationArguments(
+                Charsets.ISO_8859_1,
                 File("model.json"),
                 File("template.ftl"),
                 File("output")
@@ -95,7 +96,6 @@ object TemplrCommandSpek : Spek({
 
                 // Then
                 verify {
-                    app.charset = expected
                     app.run(expectedArguments)
                 }
             }
@@ -111,7 +111,6 @@ object TemplrCommandSpek : Spek({
 
                 // Then
                 verify {
-                    app.charset = expected
                     app.run(expectedArguments)
                 }
             }

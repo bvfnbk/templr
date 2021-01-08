@@ -19,8 +19,6 @@ import java.io.InputStreamReader
  */
 object DefaultModelServiceSpek : Spek({
     describe("The model service...") {
-        val charset = Charsets.UTF_8
-
         it("...is able to load JSON files.") {
             // Given
             val source = mockk<File>()
@@ -42,14 +40,14 @@ object DefaultModelServiceSpek : Spek({
             }.returns(MimeType.JSON)
 
             every {
-                ioService.createInputStreamReader(any<File>(), any())
+                ioService.createInputStreamReader(any<File>())
             }.returns(reader)
             every {
                 decoderService.decode(any())
             }.returns(result)
 
             // system under test:
-            val service = DefaultModelService(charset, mimeService, decoderService, ioService)
+            val service = DefaultModelService(mimeService, decoderService, ioService)
 
             // When
             val actual = service.load(source)
@@ -57,7 +55,7 @@ object DefaultModelServiceSpek : Spek({
             // Then
             verify {
                 mimeService.getMimeType(source)
-                ioService.createInputStreamReader(eq(source), eq(charset))
+                ioService.createInputStreamReader(eq(source))
                 decoderService.decode(reader)
             }
             assertThat(actual).isEqualTo(result)
