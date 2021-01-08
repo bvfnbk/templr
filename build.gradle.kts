@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.4.20"
-    kotlin("plugin.serialization") version "1.4.20"
+    kotlin("jvm") version "1.4.21"
+    kotlin("plugin.serialization") version "1.4.21"
 }
 
 group = "com.github.bvfnbk"
@@ -25,6 +25,7 @@ dependencies {
 
     implementation("com.github.ajalt.clikt:clikt:3.0.1")
     implementation("org.freemarker:freemarker:2.3.30")
+    implementation("org.koin:koin-core:2.2.1")
 }
 
 tasks {
