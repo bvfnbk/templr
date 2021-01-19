@@ -20,11 +20,11 @@ dependencies {
     // Test
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.9")
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.23")
-    testImplementation("io.mockk:mockk:1.10.3-jdk8")
+    testImplementation("io.mockk:mockk:1.10.5")
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:2.0.9")
-    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.20")
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.21")
 
-    implementation("com.github.ajalt.clikt:clikt:3.0.1")
+    implementation("com.github.ajalt.clikt:clikt:3.1.0")
     implementation("org.freemarker:freemarker:2.3.30")
     implementation("org.koin:koin-core:2.2.1")
 }
