@@ -19,7 +19,7 @@ object ExtensionBasedMimeServiceSpek : Spek({
     val service = ExtensionBasedMimeService()
     describe("The MIME detection service...") {
         describe("...is case insensitive:") {
-            it("It detectes all lower case...") {
+            it("It detects all lower case...") {
                 assertThat(service.getMimeType("test.json")).isEqualTo(MimeType.JSON)
             }
             it("It detects all upper case...") {
@@ -31,13 +31,13 @@ object ExtensionBasedMimeServiceSpek : Spek({
         }
 
         describe("...throws an error, if...") {
-            it("...given file does not provide a extension...") {
+            it("...given file does not provide a extension.") {
                 assertThat {
                     service.getMimeType("filename")
                 }.isFailure().isInstanceOf(IllegalArgumentException::class).hasMessage("Unknown file extension: ''.")
             }
 
-            it("...given file provides an unknown extension...") {
+            it("...given file provides an unknown extension.") {
                 val unknownExtension = "dfjkd"
                 assertThat {
                     service.getMimeType("filename.$unknownExtension")
@@ -45,7 +45,7 @@ object ExtensionBasedMimeServiceSpek : Spek({
                     .hasMessage("Unknown file extension: '$unknownExtension'.")
             }
 
-            it("...given abstract File is not a regular file...") {
+            it("...given abstract File is not a regular file.") {
                 // Please note: this test also covers the non-existence.
                 val directory = mockk<File>()
                 every {
