@@ -54,9 +54,9 @@ object DefaultModelServiceSpek : Spek({
 
             // Then
             verify {
-                mimeService.getMimeType(source)
+                mimeService.getMimeType(eq(source))
                 ioService.createInputStreamReader(eq(source))
-                decoderService.decode(reader)
+                decoderService.decode(eq(reader))
             }
             assertThat(actual).isEqualTo(result)
         }
