@@ -1,12 +1,13 @@
 plugins {
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.serialization") version "1.4.21"
+    id("com.palantir.graal") version "0.7.2"
 }
+
+var templrMainClassName = "com.github.bvfnbk.templr.MainKt"
 
 group = "com.github.bvfnbk"
 version = "1.0-SNAPSHOT"
-
-
 
 repositories {
     mavenCentral()
@@ -38,4 +39,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+graal {
+    mainClass(templrMainClassName)
+    outputName("templr")
 }
