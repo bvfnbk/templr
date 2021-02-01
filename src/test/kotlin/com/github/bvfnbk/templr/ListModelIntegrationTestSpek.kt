@@ -15,13 +15,12 @@ import org.spekframework.spek2.style.gherkin.Feature
 
 /**
  * The testcase defines the required files for the _model_, the _template_ and the expected _output_. The _model_ is a
- * simple JSON object which only contains literal properties. The _template_ will just print out each defined property,
- * quoting the [String] value.
+ * simple JSON _list_ which contains relatively simple objects. The _template_ will just print out each object in a row.
  *
  * @author bvfnbk
  */
-object FlatModelIntegrationTestSpek : Spek({
-    Feature("A flat JSON model") {
+object ListModelIntegrationTestSpek : Spek({
+    Feature("A simple JSON list model") {
         Scenario("is transformed according to the given template.") {
             lateinit var testCase: IntegrationTestCase
             lateinit var application: TemplrApplication
@@ -34,17 +33,15 @@ object FlatModelIntegrationTestSpek : Spek({
             }
 
             Given("All required files have been prepared.") {
-                println(".......Given")
                 testCase = IntegrationTestCase(
                     Charsets.UTF_8,
-                    JsonResource("/models/flat.json"),
-                    FtlResource("/templates/flat.ftl"),
-                    TxtResource("/outputs/flat.txt")
+                    JsonResource("/models/list.json"),
+                    FtlResource("/templates/list.ftl"),
+                    TxtResource("/outputs/list.txt")
                 )
             }
 
             When("The application is run") {
-                println(".......When")
                 application.run(
                     ApplicationArguments(
                         testCase.charset,
@@ -56,12 +53,10 @@ object FlatModelIntegrationTestSpek : Spek({
             }
 
             Then("The actual output matches the expected.") {
-                println(".......Then")
                 assertThat(testCase.actualOutput).hasSameContentAs(testCase.expectedOutput, testCase.charset)
             }
 
             afterEachGroup {
-                println(".......after each group")
                 testCase.cleanup()
                 stopKoin()
             }
