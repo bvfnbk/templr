@@ -1,5 +1,6 @@
 package com.github.bvfnbk.templr.api.service
 
+import com.github.bvfnbk.templr.api.model.Model
 import java.io.File
 import java.io.OutputStreamWriter
 import java.nio.charset.Charset
@@ -22,5 +23,5 @@ interface TemplateService {
      * @param context The [Map] defining the context.
      * @param writer The [OutputStreamWriter] where the result is written to.
      */
-    fun apply(templateFile: File, context: Map<*, *>, writer: OutputStreamWriter)
+    fun apply(templateFile: File, context: Model<*>, writer: OutputStreamWriter)
 }
