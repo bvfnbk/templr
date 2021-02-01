@@ -1,5 +1,6 @@
 package com.github.bvfnbk.templr.service
 
+import com.github.bvfnbk.templr.api.model.Model
 import com.github.bvfnbk.templr.api.model.MimeType
 import com.github.bvfnbk.templr.api.service.DecoderService
 import com.github.bvfnbk.templr.api.service.IOService
@@ -16,11 +17,11 @@ class DefaultModelService(
     private val decoderService: DecoderService,
     private val ioService: IOService
 ) : ModelService {
-    override fun load(file: File, charset: Charset): Map<*, *> = when (mimeService.getMimeType(file)) {
+    override fun load(file: File, charset: Charset): Model<*> = when (mimeService.getMimeType(file)) {
         MimeType.JSON -> loadJson(file, charset)
     }
 
-    private fun loadJson(file: File, charset: Charset): Map<*, *> {
+    private fun loadJson(file: File, charset: Charset): Model<*> {
         return decoderService.decode(ioService.createInputStreamReader(file, charset))
     }
 }
