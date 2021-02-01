@@ -1,3 +1,4 @@
 "${string}"
-${number}
-${boolean}
+${int?c}
+${float?c}
+${boolean?c}

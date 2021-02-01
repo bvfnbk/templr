@@ -3,6 +3,8 @@ package com.github.bvfnbk.templr.service
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.github.bvfnbk.templr.api.model.MimeType
+import com.github.bvfnbk.templr.api.model.ObjectModel
+import com.github.bvfnbk.templr.api.model.StringModel
 import com.github.bvfnbk.templr.api.service.DecoderService
 import com.github.bvfnbk.templr.api.service.IOService
 import com.github.bvfnbk.templr.api.service.MimeService
@@ -32,7 +34,7 @@ object DefaultModelServiceSpek : Spek({
             val mimeService = mockk<MimeService>()
 
             // result:
-            val result = mapOf("key" to "value")
+            val result = ObjectModel(mapOf("key" to StringModel("value")))
 
             // mock behaviour
             every {

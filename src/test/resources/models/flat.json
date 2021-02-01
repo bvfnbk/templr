@@ -1,5 +1,6 @@
 {
   "string" : "value",
-  "number" : 1234,
+  "int" : 1234,
+  "float" : 1.234,
   "boolean" : true
 }
