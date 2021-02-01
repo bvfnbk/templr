@@ -1,5 +1,6 @@
 package com.github.bvfnbk.templr.freemarker
 
+import com.github.bvfnbk.templr.api.model.Model
 import com.github.bvfnbk.templr.api.service.TemplateService
 import freemarker.cache.FileTemplateLoader
 import freemarker.template.Configuration
@@ -20,7 +21,7 @@ class FreemarkerTemplateService : TemplateService {
         configure()
     }
 
-    override fun apply(templateFile: File, context: Map<*, *>, writer: OutputStreamWriter) {
+    override fun apply(templateFile: File, context: Model<*>, writer: OutputStreamWriter) {
         val (templateDirectory, templateName) = splitTemplateFile(templateFile)
 
         configuration.templateLoader = FileTemplateLoader(templateDirectory)
@@ -29,7 +30,7 @@ class FreemarkerTemplateService : TemplateService {
         val template = configuration.getTemplate(templateName)
 
         // ...process
-        template.process(context, writer)
+        template.process(context.toRawModel(), writer)
     }
 
     override fun configure(charset: Charset) {
