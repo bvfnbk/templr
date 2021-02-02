@@ -16,6 +16,7 @@ Usage: templr [OPTIONS] OUTPUT
   Runs the templr application.
 
 Options:
+  -D KEY=VALUE           A key/value pair to be passed to the application.
   -c, --charset CHARSET  The input/output charset to be used. (default: UTF-8)
   -m, --model PATH       The path to the JSON model.
   -t, --template PATH    The path to the freemarker template.
