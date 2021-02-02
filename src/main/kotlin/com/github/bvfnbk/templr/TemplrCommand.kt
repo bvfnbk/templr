@@ -5,10 +5,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.output.CliktHelpFormatter
 import com.github.ajalt.clikt.parameters.arguments.argument
-import com.github.ajalt.clikt.parameters.options.convert
-import com.github.ajalt.clikt.parameters.options.default
-import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.*
 import com.github.ajalt.clikt.parameters.types.file
 import com.github.bvfnbk.templr.api.TemplrApplication
 import com.github.bvfnbk.templr.api.model.ApplicationArguments
@@ -21,6 +18,12 @@ class TemplrCommand(private val application: TemplrApplication) : CliktCommand(h
     init {
         context { helpFormatter = CliktHelpFormatter(showDefaultValues = true) }
     }
+
+    private val properties: Map<String, String> by option(
+        "-D",
+        help = "A key/value pair to be passed to the application.",
+        metavar="KEY=VALUE"
+    ).associate()
 
     private val charset by option(
         "-c",
@@ -48,7 +51,8 @@ class TemplrCommand(private val application: TemplrApplication) : CliktCommand(h
                 charset,
                 model,
                 template,
-                output
+                output,
+                properties
             )
         )
     }

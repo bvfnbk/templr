@@ -34,7 +34,6 @@ object FlatModelIntegrationTestSpek : Spek({
             }
 
             Given("All required files have been prepared.") {
-                println(".......Given")
                 testCase = IntegrationTestCase(
                     Charsets.UTF_8,
                     JsonResource("/models/flat.json"),
@@ -44,24 +43,22 @@ object FlatModelIntegrationTestSpek : Spek({
             }
 
             When("The application is run") {
-                println(".......When")
                 application.run(
                     ApplicationArguments(
                         testCase.charset,
                         testCase.model,
                         testCase.template,
-                        testCase.actualOutput
+                        testCase.actualOutput,
+                        emptyMap()
                     )
                 )
             }
 
             Then("The actual output matches the expected.") {
-                println(".......Then")
                 assertThat(testCase.actualOutput).hasSameContentAs(testCase.expectedOutput, testCase.charset)
             }
 
             afterEachGroup {
-                println(".......after each group")
                 testCase.cleanup()
                 stopKoin()
             }

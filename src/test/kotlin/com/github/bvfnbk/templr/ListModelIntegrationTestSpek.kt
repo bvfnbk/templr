@@ -47,7 +47,8 @@ object ListModelIntegrationTestSpek : Spek({
                         testCase.charset,
                         testCase.model,
                         testCase.template,
-                        testCase.actualOutput
+                        testCase.actualOutput,
+                        emptyMap()
                     )
                 )
             }
