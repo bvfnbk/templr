@@ -69,7 +69,8 @@ object TemplrCommandSpek : Spek({
                         Charsets.UTF_8,
                         File("model.json"),
                         File("template.ftl"),
-                        File("output")
+                        File("output"),
+                        emptyMap()
                     )
                 )
             }
@@ -82,7 +83,8 @@ object TemplrCommandSpek : Spek({
                 Charsets.ISO_8859_1,
                 File("model.json"),
                 File("template.ftl"),
-                File("output")
+                File("output"),
+                emptyMap()
             )
 
             it("Using short option") {
@@ -113,6 +115,66 @@ object TemplrCommandSpek : Spek({
                 verify {
                     app.run(expectedArguments)
                 }
+            }
+        }
+    }
+
+    describe("Properties are passed to the application") {
+        it("An empty property map is passed if commandline does not contain a property") {
+            // Given
+            val args = arrayOf("--model", "model.json", "--template", "template.ftl", "output")
+            val app = mockk<TemplrApplication>(relaxUnitFun = true)
+            val command = TemplrCommand(app)
+
+            // When
+            command.parse(args)
+
+            // Then
+            verify {
+                app.run(
+                    ApplicationArguments(
+                        Charsets.UTF_8,
+                        File("model.json"),
+                        File("template.ftl"),
+                        File("output"),
+                        emptyMap()
+                    )
+                )
+            }
+        }
+
+        it("The passed properties are contained in the map passed to the application") {
+            // Given
+            val args = arrayOf(
+                "--model",
+                "model.json",
+                "--template",
+                "template.ftl",
+                "-Dkey=value",
+                "-D",
+                "other=value",
+                "output"
+            )
+            val app = mockk<TemplrApplication>(relaxUnitFun = true)
+            val command = TemplrCommand(app)
+
+            // When
+            command.parse(args)
+
+            // Then
+            verify {
+                app.run(
+                    ApplicationArguments(
+                        Charsets.UTF_8,
+                        File("model.json"),
+                        File("template.ftl"),
+                        File("output"),
+                        mapOf(
+                            "key" to "value",
+                            "other" to "value"
+                        )
+                    )
+                )
             }
         }
     }
